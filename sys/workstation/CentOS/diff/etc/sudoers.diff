@@ -1,0 +1,20 @@
+--- etc/sudoers	2012-03-01 11:18:24.000000000 -0600
++++ /etc/sudoers	2012-10-01 15:34:00.888622528 -0500
+@@ -85,6 +85,8 @@ Defaults    env_keep += "LC_TIME LC_ALL 
+ 
+ Defaults    secure_path = /sbin:/bin:/usr/sbin:/usr/bin
+ 
++Defaults	targetpw
++
+ ## Next comes the main part: which users can run what software on 
+ ## which machines (the sudoers file can be shared between multiple
+ ## systems).
+@@ -102,7 +104,7 @@ root	ALL=(ALL) 	ALL
+ # %sys ALL = NETWORKING, SOFTWARE, SERVICES, STORAGE, DELEGATING, PROCESSES, LOCATE, DRIVERS
+ 
+ ## Allows people in group wheel to run all commands
+-# %wheel	ALL=(ALL)	ALL
++%wheel	ALL=(ALL)	ALL
+ 
+ ## Same thing without a password
+ # %wheel	ALL=(ALL)	NOPASSWD: ALL

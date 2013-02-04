@@ -1,0 +1,27 @@
+--- etc/syslog.conf	Fri Jul  1 07:40:18 2011
++++ /etc/syslog.conf	Tue Aug 30 05:12:31 2011
+@@ -14,7 +14,7 @@
+ 
+ # Uncomment this line to send "important" messages to the system
+ # console: be aware that this could create lots of output.
+-#*.err;auth.notice;authpriv.none;kern.debug;mail.crit	/dev/console
++*.err;auth.notice;authpriv.none;kern.debug;mail.crit	/dev/console
+ 
+ # Uncomment this to have all messages of notice level and higher
+ # as well as all authentication messages sent to root.
+@@ -31,10 +31,13 @@
+ #*.notice;auth,authpriv,cron,ftp,kern,lpr,mail,user.none	@loghost
+ #auth,daemon,syslog,user.info;authpriv,kern.debug		@loghost
+ 
++local0.info						/var/log/pflog.txt
++local0.info						/dev/console
++
+ # Uncomment to log messages from sudo(8) and chat(8) to their own
+ # respective log files.  Matches are done based on the program name.
+ # Program-specific logs:
+-#!sudo
+-#*.*							/var/log/sudo
++!sudo
++*.*							/var/log/sudo
+ #!chat
+ #*.*							/var/log/chat

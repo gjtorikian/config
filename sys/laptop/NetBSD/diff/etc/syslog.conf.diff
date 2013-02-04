@@ -1,0 +1,16 @@
+--- ./etc/syslog.conf	2010-11-07 08:26:59.000000000 -0600
++++ /etc/syslog.conf	2011-06-17 01:56:51.000000000 -0500
+@@ -13,7 +13,11 @@
+ ftp.info						/var/log/xferlog
+ lpr.info						/var/log/lpd-errs
+ mail.info						/var/log/maillog
+-#uucp.info						/var/spool/uucp/ERRORS
++uucp.info						/var/spool/uucp/ERRORS
+ 
+ *.emerg							*
+-#*.notice						root
++*.notice						root
++
++#*.*							/dev/ttyE3
++
++local0.info						/var/log/pflog.txt 

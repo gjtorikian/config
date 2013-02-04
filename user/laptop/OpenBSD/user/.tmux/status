@@ -1,0 +1,8 @@
+new-window 'exec top'
+split-window -h 'exec systat'
+select-pane -t left
+split-window 'exec netstat -w 1'
+split-window 'exec sudo pftop'
+select-pane -t right
+split-window 'exec iostat -w 1'
+split-window 'exec vmstat -w 1'

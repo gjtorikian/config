@@ -1,0 +1,11 @@
+--- etc/mail/aliases	2011-02-16 20:19:40.000000000 -0600
++++ /etc/mail/aliases	2011-06-24 00:55:07.000000000 -0500
+@@ -17,7 +17,7 @@
+ # you would do well in either reading root's mailbox or forwarding
+ # root's email from here.
+ 
+-# root:	me@my.domain
++root:	user
+ 
+ # Basic system aliases -- these MUST be present
+ MAILER-DAEMON: postmaster

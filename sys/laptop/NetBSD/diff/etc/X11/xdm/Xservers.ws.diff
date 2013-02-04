@@ -1,0 +1,8 @@
+--- ./etc/X11/xdm/Xservers.ws	2010-11-07 08:27:03.000000000 -0600
++++ /etc/X11/xdm/Xservers.ws	2011-04-13 15:51:48.000000000 -0500
+@@ -10,4 +10,4 @@
+ # look like:
+ #	XTerminalName:0 foreign
+ #
+-:0 local /usr/X11R7/bin/X :0 vt05
++:0 local /usr/X11R7/bin/X -nolisten tcp :0 vt05

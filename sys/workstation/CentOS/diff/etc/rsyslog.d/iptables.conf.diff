@@ -1,0 +1,5 @@
+--- etc/rsyslog.d/iptables.conf	1969-12-31 18:00:00.000000000 -0600
++++ /etc/rsyslog.d/iptables.conf	2012-10-01 15:17:05.825809636 -0500
+@@ -0,0 +1,2 @@
++:msg, startswith, "iptables " -/var/log/iptables
++& ~

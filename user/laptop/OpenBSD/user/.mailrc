@@ -1,0 +1,4 @@
+set ask
+set crt
+ignore message-id received date fcc status resent-date resent-message-id resent-from in-reply-to
+set NAIL_EXTRA_RC=~/.nailrc

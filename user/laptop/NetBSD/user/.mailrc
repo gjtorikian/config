@@ -1,0 +1,9 @@
+set askcc
+set autoinc
+set quiet
+set mime-decode-message
+#set mime-body-image-gif="/usr/pkg/bin/xv -"
+#set mime-hook-image="-/usr/pkg/bin/uudeview -p /home/user/tmp -i -a +o -q -"
+#set mime-body-text-html="+/usr/pkg/bin/lynx -force_html -dump -stdin"
+set mime-body-text-html="+/usr/pkg/bin/w3m -dump -T text/html"
+set sign="SIGNATURE"

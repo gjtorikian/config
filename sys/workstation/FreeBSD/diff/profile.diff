@@ -1,0 +1,11 @@
+--- ./.profile	2011-07-21 12:35:27.814865032 -0500
++++ /.profile	2011-07-19 06:54:30.366280178 -0500
+@@ -8,3 +8,8 @@
+ export TERM
+ PAGER=more
+ export PAGER
++
++export PATH=/usr/local/libexec/ccache:$PATH
++export CCACHE_PATH=/usr/bin:/usr/local/bin
++export CCACHE_DIR=/var/tmp/ccache
++export CCACHE_LOGFILE=/var/log/ccache.log

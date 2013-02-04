@@ -1,0 +1,1 @@
+xautolock -time 3 -locker slock -corners 000-

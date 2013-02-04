@@ -1,0 +1,8 @@
+--- etc/sysctl.conf	2011-02-16 20:19:39.000000000 -0600
++++ /etc/sysctl.conf	2011-04-12 22:45:10.000000000 -0500
+@@ -7,3 +7,5 @@
+ # Uncomment this to prevent users from seeing information about processes that
+ # are being run under another UID.
+ #security.bsd.see_other_uids=0
++
++hw.syscons.bell=0

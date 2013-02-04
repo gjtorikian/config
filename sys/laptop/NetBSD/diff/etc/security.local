@@ -1,0 +1,3 @@
+if [ -x /usr/sbin/pkg_admin ]; then
+	/usr/sbin/pkg_admin audit
+fi

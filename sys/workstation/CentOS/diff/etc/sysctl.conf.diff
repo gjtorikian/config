@@ -1,0 +1,17 @@
+--- etc/sysctl.conf	2012-06-22 14:52:25.000000000 -0500
++++ /etc/sysctl.conf	2012-10-01 15:27:10.956748309 -0500
+@@ -13,7 +13,7 @@ net.ipv4.conf.default.rp_filter = 1
+ net.ipv4.conf.default.accept_source_route = 0
+ 
+ # Controls the System Request debugging functionality of the kernel
+-kernel.sysrq = 0
++kernel.sysrq = 1
+ 
+ # Controls whether core dumps will append the PID to the core filename.
+ # Useful for debugging multi-threaded applications.
+@@ -38,3 +38,5 @@ kernel.shmmax = 68719476736
+ 
+ # Controls the maximum number of shared memory segments, in pages
+ kernel.shmall = 4294967296
++
++kernel.dmesg_restrict = 1

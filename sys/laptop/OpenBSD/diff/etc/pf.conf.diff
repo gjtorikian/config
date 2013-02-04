@@ -1,0 +1,38 @@
+--- etc/pf.conf	Fri Jul  1 07:40:18 2011
++++ /etc/pf.conf	Wed Aug 31 23:29:58 2011
+@@ -4,7 +4,7 @@
+ # Remember to set net.inet.ip.forwarding=1 and/or net.inet6.ip6.forwarding=1
+ # in /etc/sysctl.conf if packets are to be forwarded between interfaces.
+ 
+-set skip on lo
++#set skip on lo
+ 
+ # filter rules and anchor for ftp-proxy(8)
+ #anchor "ftp-proxy/*"
+@@ -13,7 +13,7 @@
+ # anchor for relayd(8)
+ #anchor "relayd/*"
+ 
+-pass		# to establish keep-state
++#pass		# to establish keep-state
+ 
+ # rules for spamd(8)
+ #table <spamd-white> persist
+@@ -28,4 +28,16 @@
+ #block in quick from urpf-failed to any	# use with care
+ 
+ # By default, do not permit remote connections to X11
+-block in on ! lo0 proto tcp to port 6000:6010
++#block in on ! lo0 proto tcp to port 6000:6010
++
++set block-policy drop
++set skip on lo0
++anchor a
++table <blacklist> persist
++match in all scrub (no-df)
++block in quick from <blacklist>
++block in log all
++pass out keep state
++pass in quick proto { tcp, udp } to port ssh \
++        keep state (max-src-conn 3, max-src-conn-rate 3/2, \
++        overload <blacklist> flush global)

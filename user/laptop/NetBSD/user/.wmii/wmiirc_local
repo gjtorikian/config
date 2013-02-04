@@ -1,0 +1,123 @@
+# ~/.wmii/wmiir_local
+# Last Modified: Thu, 16 Jun 2011 23:12:35 -0500
+
+WMII_THEME='bluedark'
+. ${WMII_CONFPATH%%:*}/themes/$WMII_THEME
+
+#WMII_FONT='-nil-profont-medium-r-normal--12-120-72-72-c-60-iso8859-1'
+WMII_FONT='-misc-fixed-medium-r-semicondensed-*-13-120-75-75-c-60-iso10646-1'
+
+MODKEY=Mod1
+
+WMII_TERM='/usr/pkg/bin/xterm'
+WMII_LOCK='slock'
+
+wmiir xwrite /ctl bar on top
+
+# Column Rules
+wmiir write /colrules <<!
+/.*/ -> 52+48
+!
+
+# Tagging Rules
+wmiir write /tagrules <<!
+/MPlayer.*/ -> ~
+/.*Firefox/ -> www
+/xv/ -> ~
+!
+
+tagview()
+{
+	local k=${1#+}; shift
+	set -- `wmiir ls tag | sed '/sel/d; s,/,,'`
+	test $# -eq 1 -o $k -eq 0 && return
+	local c=`wmiir read /tag/sel/ctl | sed 1q`
+	local i=1
+	while `eval expr '$'$i != $c >/dev/null`; do
+		i=`expr $i + 1`
+	done
+	local n=`expr \( $i + $k \) % $#`
+	test $n -eq 0 && n=$#
+	wmiir xwrite /ctl view `eval echo '$'$n`
+}
+
+prtscr()
+{
+	local e=png
+	local f="$e:${TMPDIR:-/tmp}/$(
+	{
+		uname -s
+		date "+%F %T%z"
+		if [ "$1" = "root" ]; then
+			echo `wmiir read /tag/sel/ctl | sed 1q`
+		else
+			echo `wmiir read /client/sel/props`
+		fi
+	} | paste -s - | tr '[ \t/]' '_').$e"
+
+	if [ -n "$1" ]; then
+		import -window "$1" "$f"
+	else
+		import -screen "$f"
+	fi
+}
+
+bar()
+{
+	local n=`echo $1 '/' $2 '*' 10 | bc -l | xargs printf "%1.0f"`
+	echo -n '['
+	local i=0
+	while [ $i -lt 10 ]; do
+		if [ $i -lt $n ]; then
+			echo -n '='
+		else
+			echo -n ' '
+		fi
+		i=`expr $i + 1`
+	done
+	echo ']'
+}
+
+status()
+{
+	echo -n mail: $(grep '^From ' /var/mail/$USER | wc -l) \
+		'|' battery: $(apm -l)% \
+		'|' $(uptime | cut -d',' -f3-) \
+		'|' $(date)
+}
+
+
+local_events() {
+	cat << '!'
+Action theme
+
+Key $MODKEY-Print
+	(prtscr root) &
+
+Key $MODKEY-Control-Print
+	(prtscr) &
+
+Key $MODKEY-Shift-Print
+	(prtscr `wmiir read /client/sel/ctl | sed 1q`) &
+
+Key $MODKEY-Shift-Return
+	eval wmiir setsid $WMII_TERM &
+
+Key $MODKEY-Shift-f
+	wmiir xwrite /client/sel/ctl Fullscreen toggle
+
+Key $MODKEY-Shift-n
+	tagview +1
+
+Key $MODKEY-Shift-p
+	tagview -1
+
+Key $MODKEY-Shift-x
+	(eval $WMII_LOCK) &
+!
+}
+
+# XXX
+wmiir read /keys | grep -ve $MODKEY-f -ve $MODKEY-Return | wmiir write /keys
+
+# vim: set ts=8 sw=8 tw=78 ft=sh:

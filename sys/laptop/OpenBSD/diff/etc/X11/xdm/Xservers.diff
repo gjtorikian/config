@@ -1,0 +1,8 @@
+--- etc/X11/xdm/Xservers	Tue Mar  1 12:21:44 2011
++++ /etc/X11/xdm/Xservers	Tue Jun 28 11:03:55 2011
+@@ -9,4 +9,4 @@
+ # look like:
+ #	XTerminalName:0 foreign
+ #
+-:0 local /usr/X11R6/bin/X :0 vt05
++:0 local /usr/X11R6/bin/X -nolisten tcp :0 vt05

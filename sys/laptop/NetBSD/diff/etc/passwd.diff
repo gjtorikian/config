@@ -1,0 +1,17 @@
+--- ./etc/passwd	2010-11-07 08:26:59.000000000 -0600
++++ /etc/passwd	2011-06-18 02:55:24.000000000 -0500
+@@ -1,4 +1,4 @@
+-root:*:0:0:Charlie &:/root:/bin/csh
++root:*:0:0:Charlie &:/root:/bin/sh
+ toor:*:0:0:Bourne-again Superuser:/root:/bin/sh
+ daemon:*:1:1:The devil himself:/:/sbin/nologin
+ operator:*:2:5:System &:/usr/guest/operator:/sbin/nologin
+@@ -16,3 +16,8 @@
+ _httpd:*:24:24:& pseudo-user:/var/www:/sbin/nologin
+ uucp:*:66:1:UNIX-to-UNIX Copy:/nonexistent:/sbin/nologin
+ nobody:*:32767:39:Unprivileged user:/nonexistent:/sbin/nologin
++user:*:1000:1000::/home/user:/bin/sh
++dbus:*:1001:1001:System message bus:/var/run/dbus:/sbin/nologin
++polkit:*:1002:1002:policykit polkit user:/nonexistent:/sbin/nologin
++haldaemon:*:1003:5:hal haldaemon user:/var/run/hal:/sbin/nologin
++cyrus:*:1004:6:cyrus-sasl cyrus user:/nonexistent:/bin/sh

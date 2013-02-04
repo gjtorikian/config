@@ -1,0 +1,13 @@
+--- etc/cron.daily/check-update	1969-12-31 18:00:00.000000000 -0600
++++ /etc/cron.daily/check-update	2012-09-14 15:15:15.540860760 -0500
+@@ -0,0 +1,10 @@
++#!/bin/sh
++
++MAILTO=root@localhost
++
++temp=`mktemp`
++yum -v check-update > $temp 2>&1
++if [ $? -eq 100 ]; then
++	mail -s "Yum updates" $MAILTO < $temp
++fi
++rm -f $temp

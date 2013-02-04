@@ -1,0 +1,18 @@
+--- etc/smartd.conf	2012-06-22 01:27:57.000000000 -0500
++++ /etc/smartd.conf	2012-09-14 18:22:37.640048300 -0500
+@@ -20,7 +20,7 @@
+ # Directives listed below, which will be applied to all devices that
+ # are found.  Most users should comment out DEVICESCAN and explicitly
+ # list the devices that they wish to monitor.
+-DEVICESCAN -H -m root
++#DEVICESCAN -H -m root
+ 
+ # Alternative setting to ignore temperature and power-on hours reports
+ # in syslog.
+@@ -142,3 +142,6 @@ DEVICESCAN -H -m root
+ # If the test string DEVICESCAN is the first uncommented text
+ # then smartd will scan for devices /dev/hd[a-l] and /dev/sd[a-z]
+ # DEVICESCAN may be followed by any desired Directives.
++
++/dev/sg2 -d sat+megaraid,4 -a -s L/../../7/01 -m root@localhost
++/dev/sg2 -d sat+megaraid,5 -a -s L/../../7/02 -m root@localhost

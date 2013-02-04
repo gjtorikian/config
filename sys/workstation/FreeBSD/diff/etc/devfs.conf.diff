@@ -1,0 +1,14 @@
+--- etc/devfs.conf	2011-02-16 20:19:39.000000000 -0600
++++ /etc/devfs.conf	2011-06-20 01:29:45.000000000 -0500
+@@ -43,3 +43,11 @@
+ # Allow members of group operator to cat things to the speaker
+ #own	speaker	root:operator
+ #perm	speaker	0660
++
++link    acd0    cdrom
++link    acd0    dvd
++perm    acd0    0660
++perm    cd0     0660
++perm    pass0   0660
++perm    pass1   0660
++perm    xpt0    0666

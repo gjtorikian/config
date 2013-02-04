@@ -1,0 +1,97 @@
+#menu.roundCorners: TopLeft TopRight BottomRight Bottomleft
+#toolbar.shaped: True
+#window.roundCorners: TopLeft TopRight BottomRight Bottomleft
+*font: -*-helvetica-bold-r-normal-*-12-*-*-*-*-*-*-*
+bevelWidth: 1
+borderColor: #000000
+borderWidth: 0
+frameWidth: 0
+handleWidth: 4
+menu.bullet.position: Right
+menu.bullet: Triangle
+menu.frame.color: #7521e9
+menu.frame.colorTo: #421083
+menu.frame.disableColor: #ffffff
+menu.frame.justify: Left
+menu.frame.textColor: #c0c5cb
+menu.frame: Flat Gradient PipeCross Interlaced
+menu.hilite.color: #1b2326
+menu.hilite.colorTo: #1b2326
+menu.hilite.textColor: #c0c5cb
+menu.hilite: Raised Bevel2 Gradient Elliptic Interlaced
+menu.title.color: #292a32
+menu.title.colorTo: #1b2326
+menu.title.justify: Center
+menu.title.textColor: #c0c5cb
+menu.title: Flat Solid Horizontal
+rootCommand: xsetroot -solid black
+toolbar.alpha: 165
+toolbar.button.color: #7521e9
+toolbar.button.colorTo: #421083
+toolbar.button.picColor: #440e48
+toolbar.button.pressed.color: #421083
+toolbar.button.pressed.colorTo: #7521e9
+toolbar.button.pressed: Sunken Bevel2 Gradient Vertical
+toolbar.button: Raised Bevel2 Gradient Vertical
+toolbar.clock.color: #7521e9
+toolbar.clock.colorTo: #421083
+toolbar.clock.textColor: #c0c5cb
+toolbar.clock: Raised Bevel2 Gradient Vertical Interlaced
+toolbar.color: #7521e9
+toolbar.colorTo: #421083
+toolbar.height: 18
+toolbar.justify: Left
+toolbar.label.color: #7521e9
+toolbar.label.colorTo: #421083
+toolbar.label.textColor: #c0c5cb
+toolbar.label: Flat Gradient Vertical Interlaced
+toolbar.textColor: #c0c5cb
+toolbar.windowLabel.color: #7521e9
+toolbar.windowLabel.colorTo: #421083
+toolbar.windowLabel.textColor: #c0c5cb
+toolbar.windowLabel: Raised Bevel1 Gradient Vertical Interlaced
+toolbar: Raised Bevel1 Gradient Elliptic Interlaced
+window.button.focus.color: #7521e9
+window.button.focus.color: #7521e9
+window.button.focus.colorTo: #421083
+window.button.focus.colorTo: #421083
+window.button.focus.picColor: #440e48
+window.button.focus.picColor: #440e48
+window.button.focus: Raised Bevel2 Gradient PipeCross
+window.button.pressed.color: #8d396b
+window.button.pressed.colorTo: #5c2455
+window.button.pressed: Sunken Bevel2 Gradient PipeCross
+window.button.unfocus.color: #421083
+window.button.unfocus.colorTo: #7521e9
+window.button.unfocus.picColor: #440e48
+window.button.unfocus: Raised Bevel2 Solid CrossDiagonal
+window.frame.focusColor: #7521e9
+window.frame.unfocusColor: #421083
+window.grip.focus.color: #7521e9
+window.grip.focus.colorTo: #421083
+window.grip.focus: Sunken Bevel2 Gradient Elliptic
+window.grip.unfocus.color: #7521e9
+window.grip.unfocus: Sunken Bevel2 Solid Vertical
+window.handle.focus.color: #7521e9
+window.handle.focus.colorTo: #421083
+window.handle.focus: Sunken Bevel2 Gradient Vertical
+window.handle.unfocus.color: #421083
+window.handle.unfocus.colorTo: #7521e9
+window.handle.unfocus: Sunken Bevel2 Gradient Vertical
+window.justify: center
+window.label.focus.color: #7521e9
+window.label.focus.colorTo: #421083
+window.label.focus.justify: Left
+window.label.focus.textColor: #c0c5cb
+window.label.focus: Raised Bevel2 Gradient Vertical Interlaced
+window.label.unfocus.color: #421083
+window.label.unfocus.colorTo: #7521e9
+window.label.unfocus.textColor: #c0c5cb
+window.label.unfocus: Raised Bevel2 Gradient Vertical Interlaced
+window.title.focus.color: #7521e9
+window.title.focus.colorTo: #421083
+window.title.focus: Sunken Bevel2 Solid Horizontal
+window.title.height: 18
+window.title.unfocus.color: #421083
+window.title.unfocus.colorTo: #7521e9
+window.title.unfocus: Sunken Bevel2 Solid Horizontal

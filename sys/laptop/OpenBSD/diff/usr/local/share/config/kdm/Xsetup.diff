@@ -1,0 +1,8 @@
+--- Xsetup	Wed Aug 17 17:58:51 2011
++++ /usr/local/share/config/kdm/Xsetup	Wed Aug 17 17:28:55 2011
+@@ -1,4 +1,4 @@
+ #! /bin/sh
+ # Xsetup - run as root before the login dialog appears
+ 
+-#xconsole -geometry 480x130-0-0 -notify -verbose -fa clean -exitOnFail -file /dev/xconsole &
++xconsole -bg black -fg green -geometry 480x130-0-0 -daemon -notify -verbose -fn fixed -exitOnFail

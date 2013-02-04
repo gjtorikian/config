@@ -1,0 +1,11 @@
+--- etc/pam.d/su	2012-04-17 08:03:48.000000000 -0500
++++ /etc/pam.d/su	2012-11-12 19:54:29.141399756 -0600
+@@ -3,7 +3,7 @@
+ # Uncomment the following line to implicitly trust users in the "wheel" group.
+ #auth		sufficient	pam_wheel.so trust use_uid
+ # Uncomment the following line to require a user to be in the "wheel" group.
+-#auth		required	pam_wheel.so use_uid
++auth		required	pam_wheel.so use_uid
+ auth		include		system-auth
+ account		sufficient	pam_succeed_if.so uid = 0 use_uid quiet
+ account		include		system-auth

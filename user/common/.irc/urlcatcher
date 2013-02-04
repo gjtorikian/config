@@ -1,0 +1,488 @@
+#
+#
+#
+### Save urls from the channel. (part from the CountEr)
+
+#/on -public "* % http://*" exec netscape $NETDISP -noraise -remote "openurl\($word($match(http://* $strip(` $2-)) noth $strip(` $2-))\)"
+
+alias stack.push {
+	^assign stack.$0[$stack[$0]] $1-
+	^assign -linkurl[$stack[$0]]
+    ^assign stack.$0 $right(3 ${000 ## stack[$0] + 1})
+	if ([$stack[$0]]>[999]){
+		^assign stack.$0 000
+	}
+}
+
+alias stack.clear {
+	^assign stack.$0 000
+	foreach stack.$0 jj {
+		^assign -stack.$0.$jj
+	}
+}
+
+alias stack.print {
+	echo - pos = $stack[$0]
+	foreach stack.$0 jj {
+		if ([$jj]>=[$stack[$0]]){
+			echo $0\[$jj\] = $stack[$0][$jj]
+		}
+	}
+	foreach stack.$0 jj {
+		if ([$jj]<[$stack[$0]]){
+			echo $0\[$jj\] = $stack[$0][$jj]
+		}
+	}
+}
+
+alias starturl {
+	stack.clear url
+	restarturl
+}
+
+alias stack.push.anon {
+	^assign cnt $stack[url]
+	if ([$redir[$encode($4)]] != [DMGJGHGOGPHCGFDO]){
+		if (![$urlen[$redir[$encode($4)]]]){
+			echo URL $4 unset $urlen[$redir[$encode($4)]].
+			notice $4 URLs said on this channel are archived publically.
+			notice $4 If you don't want this, do "/ctcp counter urlen off"
+			^assign urlen.$redir[$encode($4)] on
+		}{
+			echo URL $4   set $urlen[$redir[$encode($4)]].
+		}
+
+		# A bit hacky...  urlrs set from here is irrelevant... overwritten later
+		if ( [$urlen[$redir[$encode($4)]]]!=[on] ){
+			^assign urlrs.$cnt _ $cnt SET OFF from $4 . $decode($redir[$encode($4)])
+		}{
+			^assign -urlrs.$cnt 
+		}
+		stack.push $0-
+
+		^assign cc 499
+		@ cnt = stack.url - 1
+		while ( cc > 0 ){
+			@ cc = cc - 1
+				if (cnt == 000){
+					@ cnt = 999
+				}{
+					^assign cnt $right(3 ${000 ## cnt - 1})
+				}
+			if ([$word(0 $stack[url][$cnt])] == [$1]) {
+				@ myt = time() - word(1 $stack[url][$cnt])
+					@ cc = -1
+					notice $4 Note: This url was already mentioned$hms.do($myt) ago by $word(3 $stack[url][$cnt]).
+			}
+        }
+
+	}{
+		^assign urlrs.$cnt \# $cnt by an ignored person.
+		stack.push $0 $1 $2 1 ? $5 $(${[$3]+5})
+	}
+
+}
+
+alias stack.push.priv {
+	^assign cnt $stack[url]
+	if ([$redir[$encode($4)]] != [DMGJGHGOGPHCGFDO]){
+		if (![$urlen[$redir[$encode($4)]]]){
+			echo URL $4 unset $urlen[$redir[$encode($4)]].
+			notice $4 URLs said on this channel are archived publically.
+			notice $4 If you don't want this, do "/ctcp counter urlen off"
+			^assign urlen.$redir[$encode($4)] on
+		}{
+			echo URL $4   set $urlen[$redir[$encode($4)]].
+		}
+
+		# A bit hacky...  urlrs set from here is irrelevant... overwritten later
+		if ( [$urlen[$redir[$encode($4)]]]!=[on] ){
+			^assign urlrs.$cnt _ $cnt SET OFF from $4 . $decode($redir[$encode($4)])
+		}{
+			^assign urlrs.$cnt _ $cnt SET ON,priv from $4 . $decode($redir[$encode($4)])
+		}
+		stack.push $0-
+
+	}{
+		^assign urlrs.$cnt \# $cnt by an ignored person.
+		stack.push $0 $1 $2 1 ? $5 $(${[$3]+5})
+	}
+}
+
+alias restarturl {
+	^on #^public 77 "% * http://*" {
+		^assign tt $match(http://* $2-)
+		stack.push.anon url $word($tt dummy $2-) $time() $tt $*
+	}
+	^on #^action 77 "% * http://*" {
+		^assign tt $match(http://* $2-)
+		stack.push.anon url $word($tt dummy $2-) $time() $tt $*
+	}
+	^on #^public 77 "% * https://*" {
+		^assign tt $match(https://* $2-)
+		stack.push.anon url $word($tt dummy $2-) $time() $tt $*
+	}
+	^on #^action 77 "% * https://*" {
+		^assign tt $match(https://* $2-)
+		stack.push.anon url $word($tt dummy $2-) $time() $tt $*
+	}
+	^on #^public 77 "% * www.*" {
+		^assign tt $match(www.* $2-)
+		stack.push.priv url http://$word($tt dummy $2-) $time() $tt $*
+	}
+	^on #^action 77 "% * www.*" {
+		^assign tt $match(www.* $2-)
+		stack.push.priv url http://$word($tt dummy $2-) $time() $tt $*
+	}
+	^on #^public 77 "% * <%@%>" {
+		^assign tt $match(<%@%> $2-)
+		stack.push.anon url http://groups.google.com/groups?selm=$strip(<> $word($tt dummy $2-)) $time() $tt $*
+	}
+	^on #^action 77 "% * <%@%>" {
+		^assign tt $match(<%@%> $2-)
+		stack.push.anon url http://groups.google.com/groups?selm=$strip(<> $word($tt dummy $2-)) $time() $tt $*
+	}
+}
+
+eval assign httpd.get.$encode(/url) 1
+alias httpd.get./url {
+	if ([$httpd[$0.host]]!=[nohost]){
+	@ url.yday = []
+	httpd.title3nc $0 The list'o Urls...
+	if ([$1]==[all]) {
+		httpd.$0 Warning: This list is disabled if you come from a Searchengine.
+#		httpd.$0 <ol>
+#		url.listall $0
+	}{
+		url.listsome $0 $1
+	}
+	httpd.$0 </ol>
+	httpd.end $0
+	}{
+		httpd.$0 Function eliminated, refer to hoeni or ray.
+		httpd.$0 <br>-- Sec, 14.11.01
+	}
+}
+
+eval assign httpd.get.$encode(/url/rss-1.xml) 1
+eval assign httpd.ctype.$encode(/url/rss-1.xml) text/xml
+alias httpd.get./url/rss-1.xml {
+	@ url.yday = []
+	@ cc = 1
+	httpd.title.rss $0 The URLfeed
+	url.listsome.xml $0 $1
+	httpd.$0 </channel></rss>
+}
+
+eval assign httpd.get.$encode(/url/rss-2.xml) 1
+eval assign httpd.ctype.$encode(/url/rss-2.xml) text/xml
+alias httpd.get./url/rss-2.xml {
+	@ url.yday = []
+	@ cc = 2
+	httpd.title.rss $0 The URLfeed
+	url.listsome.xml $0 $1
+	httpd.$0 </channel></rss>
+}
+
+eval assign httpd.get.$encode(/url/rss-3.xml) 1
+eval assign httpd.ctype.$encode(/url/rss-3.xml) text/xml
+alias httpd.get./url/rss-3.xml {
+	@ url.yday = []
+	@ cc = 3
+	httpd.title.rss $0 The URLfeed
+	url.listsome.xml $0 $1
+	httpd.$0 </channel></rss>
+}
+
+
+eval assign httpd.get.$encode(/url-a) 1
+eval assign httpd.open.$encode(/url-a) auth
+eval assign httpd.auth.$encode(/url-a) %
+eval assign httpd.err.$encode(/url-a) <br>Go <a href="url">here</a> for the public version of this page.
+alias httpd.get./url-a {
+	httpd.get./url $0-
+}
+
+eval assign httpd.get.$encode(/url-a/rss-1.xml) 1
+eval assign httpd.ctype.$encode(/url-a/rss-1.xml) text/xml
+alias httpd.get./url-a/rss-1.xml {
+	if ([$1]) {
+		^assign auth 1
+		httpd.get./url/rss-1.xml $0-
+	}{
+		httpd.$0 Errr, no.
+	}
+}
+
+eval assign httpd.get.$encode(/url-a/rss-2.xml) 1
+eval assign httpd.ctype.$encode(/url-a/rss-2.xml) text/xml
+alias httpd.get./url-a/rss-2.xml {
+	if ([$1]) {
+	^assign auth 1
+	httpd.get./url/rss-2.xml $0-
+	}{
+		httpd.$0 Errr, no.
+	}
+}
+
+eval assign httpd.get.$encode(/url-a/rss-3.xml) 1
+eval assign httpd.ctype.$encode(/url-a/rss-3.xml) text/xml
+alias httpd.get./url-a/rss-3.xml {
+	if ([$1]) {
+	^assign auth 1
+	httpd.get./url/rss-3.xml $0-
+	}{
+		httpd.$0 Errr, no.
+	}
+}
+
+alias url.listall {
+	foreach stack.url jj {
+		if ([$jj]>=[$stack[url]]){
+			httpd.$0 $linkurl($stack[url][$jj])
+		}
+	}
+	foreach stack.url jj {
+		if ([$jj]<[$stack[url]]){
+			httpd.$0 $linkurl($stack[url][$jj])
+		}
+	}
+}
+
+alias url.listsome {
+	^assign tt $stime($time())
+	@ url.yday = mid(8 2 $tt) ## [.] ## mid(4 3 $tt) ## [.] ## mid(20 4 $tt)
+	@ myt = time()
+
+	@ cnt = stack.url
+	^assign -cc
+	^assign cc $1
+	@ cc = cc + 0
+	if ( cc < 1){@ cc = 10}
+	if ( cc > 999){@ cc = 10}
+	httpd.$0 <LINK REL="alternate" title="Authenticated" href="/url-a">
+	httpd.$0 <LINK REL="alternate" title="Public" href="/url">
+	httpd.$0 <LINK REL="top" title="Counter Top" href="/">
+	httpd.$0 <LINK REL="last" title="More Links" href="?99">
+	httpd.$0 <LINK REL="last" title="help" href="/info">
+	if (auth) {
+		httpd.$0 <link rel="alternate" type="application/xml" title="RSS 1day (auth)" href="http://utfe.net/url-a/rss-1.xml?$httpd[$0][authraw]">
+		httpd.$0 <link rel="alternate" type="application/xml" title="RSS 2days (auth)" href="http://utfe.net/url-a/rss-2.xml?$httpd[$0][authraw]">
+		httpd.$0 <link rel="alternate" type="application/xml" title="RSS 3days (auth)" href="http://utfe.net/url-a/rss-3.xml?$httpd[$0][authraw]">
+	}{
+		httpd.$0 <link rel="alternate" type="application/xml" title="RSS 1day" href="http://utfe.net/url/rss-1.xml">
+		httpd.$0 <link rel="alternate" type="application/xml" title="RSS 2days" href="http://utfe.net/url/rss-2.xml">
+		httpd.$0 <link rel="alternate" type="application/xml" title="RSS 3days" href="http://utfe.net/url/rss-3.xml">
+	}
+	httpd.$0 </head><body><div>
+	httpd.$0 These are the $cc most recent additions. You may also choose to see a <a href="/url?99">longer list</a><!-- or <a href="/url?all">the old one</a>-->.
+	httpd.$0 <br></br><ol start=0>
+	httpd.$0 <li style="list-style-type:none\;"><b>$url.yday</b></li>
+
+	while ( cc > 0 ){
+		@ cc = cc - 1
+		if (cnt == 000){
+			@ cnt = 999
+		}{
+			^assign cnt $right(3 ${000 ## cnt - 1})
+		}
+
+		@ myot = myt
+		@ myt = words(2 $stack[url][$cnt])
+
+		if (![$linkurl[$cnt]]){
+#			echo URL $cnt gets cached @ $stime($myt)
+			assign linkurl.$cnt $linkurl($stack[url][$cnt])
+		}
+#		{ httpd.$0 <!-- cached $stack[url][$cnt] --> }
+		if ( (![$urlrs[$cnt]]) || auth ){
+			httpd.$0 $linkurl[$cnt]
+		}{
+			;
+#			httpd.$0 <!-- restricted access to $urlrs[$cnt] -->
+		}
+	}
+}
+
+alias url.listsome.xml {
+	^assign tt $stime($time())
+	@ url.yday = mid(8 2 $tt) ## [.] ## mid(4 3 $tt) ## [.] ## mid(20 4 $tt)
+	@ myt = time()
+
+	@ cnt = stack.url
+	@ cc = cc + 0
+	@ cct = 0
+	@ maxno = 40
+	if ( cc < 1){@ cc = 1}
+	if ( cc > 3){@ cc = 3}
+	httpd.$0 <description>An RSS stream of the list of URLs</description>
+#	httpd.$0 <item><title>Welcome to the test</title><link>javascript:alert(document.location)</link></item>
+	while ( cc > 0 && maxno > 0){
+		@ maxno = maxno - 1
+		if (cnt == 000){
+			@ cnt = 999
+		}{
+			^assign cnt $right(3 ${000 ## cnt - 1})
+		}
+
+		@ myot = myt
+		@ myt = words(2 $stack[url][$cnt])
+
+		assign localcache $linkurl.xml($stack[url][$cnt])
+
+		if ( (![$urlrs[$cnt]]) || auth ){
+			if (cc > 0) {
+			@ cct = 1
+			httpd.$0 $localcache
+			}
+		}{
+			httpd.$0 <!-- restricted access to $urlrs[$cnt] -->
+		}
+	}
+	if ( cct < 1 ){
+		httpd.$0 <item><title>No URLs yet, as of $mid(11 5 $stime($time()))</title><link>x</link></item>
+	}
+}
+
+# http://www.foo.org/ 938000340 3 Sec #blafasel i love www.foo.org !
+alias linkurl {
+
+	if ( [$urlen[$redir[$encode($3)]]]!=[on] ){
+		if ( [$urlen[$redir[$encode($3)]]]){
+			^assign urlrs.$cnt \# $cnt SET OFF from $3
+		}{
+			^assign urlrs.$cnt \# $cnt unset from $3
+		}
+	}{
+#		^assign -urlrs.$cnt
+	}
+
+	if ( (![$urlrs[$cnt]]) ){
+		@ a.1 = []
+		@ a.2 = []
+	}{
+		@ a.1 = [<font color="#ff0000">]
+		@ a.2 = [</font>]
+	}
+
+	@ tto = stime($myot)
+	@ url.yday = mid(8 2 $tto) ## [.] ## mid(4 3 $tto) ## [.] ## mid(20 4 $tto)
+	@ tt = stime($1)
+	@ url.day = mid(8 2 $tt) ## [.] ## mid(4 3 $tt) ## [.] ## mid(20 4 $tt)
+	@ url.hm  = mid(11 5 $tt)
+
+	@ fr = []
+
+	if (url.day != url.yday){
+#		echo URL Added day: $url.day to it.
+		@ fr = fr ## [<br><br><b>] ## url.day ## [</b><br>]
+	}
+
+	@ fr = fr ## [<li>&lt\;$a.1$fix(HTML $3)$a.2] ## [&gt\; ]
+
+	if ([$2] > 1){
+		@ fr = fr ## [$fix(HTML $(5-${[$2]+3})) ]
+	}
+
+	@ fr = fr ## [<a href="$fix(URL $0)">$fix(HTML $(${[$2]+4}))</a>]
+
+	if ([$2] < rmatch($~ $5-)){
+		@ fr = fr ## [ $fix(HTML $(${[$2]+5}-))]
+	}
+
+	@ fr = fr ## [ \[] ## url.hm ## [\]]
+
+	@ function_return = fr
+
+	@ url.yday = url.day
+}
+
+alias linkurl.xml {
+
+	if ( [$urlen[$redir[$encode($3)]]]!=[on] ){
+		if ( [$urlen[$redir[$encode($3)]]]){
+			^assign urlrs.$cnt \# $cnt SET OFF from $3
+		}{
+			^assign urlrs.$cnt \# $cnt unset from $3
+		}
+	}{
+#		^assign -urlrs.$cnt
+	}
+
+	if ( (![$urlrs[$cnt]]) ){
+		@ a.1 = []
+		@ a.2 = []
+	}{
+		@ a.1 = [#]
+		@ a.2 = []
+	}
+
+	@ tto = stime($myot)
+	@ url.yday = mid(8 2 $tto) ## [.] ## mid(4 3 $tto) ## [.] ## mid(20 4 $tto)
+	@ tt = stime($1)
+	@ url.day = mid(8 2 $tt) ## [.] ## mid(4 3 $tt) ## [.] ## mid(20 4 $tt)
+	@ url.hm  = mid(11 5 $tt)
+
+	@ fr = [<item>]
+
+	if (url.day != url.yday){ 
+		@ cc = cc - 1
+		@ fr = fr ## [<title>---- ] ## url.day ## [</title><link>x</link></item><item>]
+	}
+
+	@ fr = fr ## [<link>$fix(XML $0)</link><title>]
+
+	@ fr = fr ## [\[] ## url.hm ## [\]]
+	@ fr = fr ## [ $a.1$fix(XML $3)$a.2] ## [: ]
+
+	if ([$2] > 1){
+		@ fr = fr ## [$fix(XML $(5-${[$2]+3})) ]
+	}
+
+	@ tmp = mid(${index(/ $0) + 2} 99 $0)
+	@ tmp.dom = left($index(/ $tmp) $tmp)
+	@ tmp.dom = fix(XML $tmp.dom)
+	if ( index(? $tmp) > 0 ) {
+		@ tmp = mid(0 ${index(? $tmp) + 1} $tmp)
+	}
+	@ tmp = mid(${rindex(/ $tmp) + 1} 99 $tmp)
+	@ tmp = fix(XML $tmp)
+	@ fr = fr ## tmp.dom ## [/...] ## tmp
+#	@ fr = fr ## [$strip(<> $(${[$2]+4}))]
+#	@ fr = fr ## [_]
+
+	if ([$2] < rmatch($~ $5-)){
+		@ fr = fr ## [ $fix(XML $(${[$2]+5}-))]
+	}
+
+
+	@ fr = fr ## [</title></item>]
+
+	@ function_return = fr
+
+#	@ url.yday = url.day
+}
+
+on -timer "00:01" url.fixcache
+
+alias url.fixcache {
+	^assign tt $stime($time())
+	@ url.yday = mid(8 2 $tt) ## [.] ## mid(4 3 $tt) ## [.] ## mid(20 4 $tt)
+
+	@ cnt = stack.url - 1
+	^assign cnt $right(3 ${000 ## cnt - 1})
+	echo ... url.fixcache: $cnt
+	^assign -linkurl.$cnt
+#	^assign linkurl.$cnt $linkurl($stack[url][$cnt])
+}
+
+alias url.clearcache {
+	foreach linkurl jj {
+		^assign -linkurl.$jj
+	}
+}
+
+# The $words(index string) function. (index may be a range)
+alias words ^assign function_return $($0)
+
+# The fix() function is in "httpd"

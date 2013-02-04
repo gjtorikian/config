@@ -1,0 +1,7 @@
+THINKPAD /usr/X11R6/bin/xterm
+OSD ON
+OSDFONT -adobe-helvetica-bold-r-normal-*-17-*-*-*-*-*-*-*
+OSDCOLOR GREEN
+OSDSHADOW 1
+OSDOUTLINE 0
+OSDALIGN CENTER

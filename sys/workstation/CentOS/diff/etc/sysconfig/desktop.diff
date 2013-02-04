@@ -1,0 +1,4 @@
+--- etc/sysconfig/desktop	1969-12-31 18:00:00.000000000 -0600
++++ /etc/sysconfig/desktop	2012-09-10 10:47:18.151577516 -0500
+@@ -0,0 +1 @@
++DISPLAYMANAGER=XDM

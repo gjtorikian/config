@@ -1,0 +1,8 @@
+--- ./etc/sysctl.conf	2010-11-07 08:26:59.000000000 -0600
++++ /etc/sysctl.conf	2011-04-13 14:30:42.000000000 -0500
+@@ -29,3 +29,5 @@
+ 
+ # Number of kernel threads to use for NFS client
+ #vfs.nfs.iothreads=4
++
++hw.ath0.txintrperiod=1

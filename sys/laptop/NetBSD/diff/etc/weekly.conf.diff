@@ -1,0 +1,8 @@
+--- ./etc/weekly.conf	2010-11-07 08:26:59.000000000 -0600
++++ /etc/weekly.conf	2011-04-13 14:31:07.000000000 -0500
+@@ -8,3 +8,5 @@
+ 
+ # Add local overrides below
+ #
++
++rebuild_locatedb=NO

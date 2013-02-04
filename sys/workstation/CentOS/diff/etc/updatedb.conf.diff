@@ -1,0 +1,8 @@
+--- etc/updatedb.conf	2010-01-15 10:52:19.000000000 -0600
++++ /etc/updatedb.conf	2012-09-13 21:38:58.694798058 -0500
+@@ -1,4 +1,4 @@
+ PRUNE_BIND_MOUNTS = "yes"
+ PRUNEFS = "9p afs anon_inodefs auto autofs bdev binfmt_misc cgroup cifs coda configfs cpuset debugfs devpts ecryptfs exofs fuse fusectl gfs gfs2 hugetlbfs inotifyfs iso9660 jffs2 lustre mqueue ncpfs nfs nfs4 nfsd pipefs proc ramfs rootfs rpc_pipefs securityfs selinuxfs sfs sockfs sysfs tmpfs ubifs udf usbfs"
+ PRUNENAMES = ".git .hg .svn"
+-PRUNEPATHS = "/afs /media /net /sfs /tmp /udev /var/cache/ccache /var/spool/cups /var/spool/squid /var/tmp"
++PRUNEPATHS = "/home /afs /media /net /sfs /tmp /udev /var/cache/ccache /var/spool/cups /var/spool/squid /var/tmp"

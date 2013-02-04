@@ -1,0 +1,7 @@
+--- etc/syslog.conf	2011-02-16 20:19:39.000000000 -0600
++++ /etc/syslog.conf	2011-06-20 04:09:05.000000000 -0500
+@@ -29,3 +29,4 @@
+ !ppp
+ *.*						/var/log/ppp.log
+ !*
++local0.info					/var/log/pflog.txt

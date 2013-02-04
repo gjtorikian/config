@@ -1,0 +1,8 @@
+--- ./etc/locate.conf	2010-11-07 08:26:59.000000000 -0600
++++ /etc/locate.conf	2011-06-20 19:04:51.000000000 -0500
+@@ -25,3 +25,5 @@
+ #ignore		/tmp /amd
+ #ignorecontents	/var/squid/cache/*
+ #workdir 	/var/tmp
++
++ignore		/cdrom /home /media /mnt /tmp /usr/distfiles /usr/tmp /usr/work

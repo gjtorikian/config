@@ -1,0 +1,11 @@
+# Device Mountpoint FStype Options Dump Pass#
+/dev/da0s3b.eli none swap sw 0 0
+/dev/da0s3a / ufs rw 1 1
+#/dev/da0s3e /tmp ufs rw 2 2
+/dev/da0s3f /usr ufs rw 2 2
+/dev/da0s3d /var ufs rw 2 2
+#/dev/acd0 /cdrom cd9660 ro,noauto 0 0
+#/dev/fd0 /floppy auto rw,noauto 0 0
+#/dev/gpt/swap0.eli none swap sw 0 0
+linproc  /compat/linux/proc linprocfs rw 0 0
+proc  /proc procfs rw 0 0

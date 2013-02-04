@@ -1,0 +1,9 @@
+--- etc/yum.repos.d/google-earth.repo	1969-12-31 18:00:00.000000000 -0600
++++ /etc/yum.repos.d/google-earth.repo	2012-09-12 17:01:48.494603756 -0500
+@@ -0,0 +1,6 @@
++[google-earth]
++name=google-earth
++baseurl=http://dl.google.com/linux/earth/rpm/stable/$basearch
++enabled=1
++gpgcheck=1
++gpgkey=https://dl-ssl.google.com/linux/linux_signing_key.pub

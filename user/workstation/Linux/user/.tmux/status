@@ -1,0 +1,8 @@
+new-window 'exec top'
+split-window -h 'exec sh -c "while :;do clear;sensors;sleep 1;done"'
+select-pane -t left
+split-window 'exec sar -m CPU -n DEV -q 1'
+select-pane -t right
+split-window 'exec nvidia-smi -l'
+split-window 'exec iostat -Nm 1'
+#split-window 'exec vmstat -S M 1'

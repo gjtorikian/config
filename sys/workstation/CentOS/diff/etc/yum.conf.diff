@@ -1,0 +1,10 @@
+--- etc/yum.conf	2012-06-22 14:57:05.000000000 -0500
++++ /etc/yum.conf	2012-09-10 20:54:33.055524009 -0500
+@@ -1,6 +1,6 @@
+ [main]
+ cachedir=/var/cache/yum/$basearch/$releasever
+-keepcache=0
++keepcache=1
+ debuglevel=2
+ logfile=/var/log/yum.log
+ exactarch=1

@@ -1,0 +1,10 @@
+directory = ./save
+port_range = 6890-6999
+# stop all torrents at 7am
+#schedule = files_off,07:00:00,24:00:00,"d.multicall=started,d.stop="
+# start all torrents at 1am
+#schedule = files_on,01:00:00,24:00:00,"d.multicall=stopped,d.start="
+schedule = low_diskspace,5,60,close_low_diskspace=100M
+schedule = untied_directory,5,5,stop_untied=
+schedule = watch_directory,5,5,load_start=./watch/*.torrent
+session = ./session

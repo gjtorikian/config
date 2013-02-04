@@ -1,0 +1,7 @@
+--- etc/sysconfig/network-scripts/ifcfg-eth0	2012-09-10 06:17:07.824402435 -0500
++++ /etc/sysconfig/network-scripts/ifcfg-eth0	2012-09-11 10:59:58.265450698 -0500
+@@ -11,3 +11,4 @@ NM_CONTROLLED="yes"
+ ONBOOT="yes"
+ TYPE="Ethernet"
+ UUID="ba16ffef-76e8-412c-976f-551264fdbb1d"
++ETHTOOL_OPTS="wol g"

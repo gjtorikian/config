@@ -1,0 +1,17 @@
+*color: #000000
+*focus.color: #000000
+*unfocus.color: #000000
+*font: -adobe-helvetica-bold-r-*-*-15-*-*-*-*-*-*-*
+#*font: -*-profont-medium-r-normal-*-15-*-*-*-*-*-iso8859-1
+*height: 22
+*picColor: #006600
+*textColor: #006600
+borderColor: #006600
+borderWidth: 1
+frameWidth: 1
+handleWidth: 4
+menu.borderColor: #006600
+menu.bullet.position: right
+menu.bullet: triangle
+rootCommand: xsetroot-solidblack
+window.justify: center

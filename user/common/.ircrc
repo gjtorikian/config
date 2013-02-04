@@ -1,0 +1,14 @@
+set novice off
+server irc.freenode.net
+nick NICK
+msg nickserv identify PASS
+set server SERVER
+set log on
+set logfile ~/tmp/irc.log
+ignore * CRAP
+load timestamp
+
+window log on
+
+window new
+window log on

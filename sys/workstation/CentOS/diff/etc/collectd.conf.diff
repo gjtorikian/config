@@ -1,0 +1,91 @@
+--- etc/collectd.conf	2012-04-04 14:23:03.000000000 -0500
++++ /etc/collectd.conf	2012-09-12 22:43:54.257646232 -0500
+@@ -61,14 +61,14 @@ LoadPlugin syslog
+ #LoadPlugin conntrack
+ #LoadPlugin contextswitch
+ LoadPlugin cpu
+-#LoadPlugin cpufreq
++LoadPlugin cpufreq
+ #LoadPlugin csv
+ #LoadPlugin curl
+ ##LoadPlugin curl_json
+ #LoadPlugin curl_xml
+ ##LoadPlugin dbi
+-#LoadPlugin df
+-#LoadPlugin disk
++LoadPlugin df
++LoadPlugin disk
+ #LoadPlugin dns
+ #LoadPlugin email
+ #LoadPlugin entropy
+@@ -78,7 +78,7 @@ LoadPlugin cpu
+ ##LoadPlugin gmond
+ #LoadPlugin hddtemp
+ LoadPlugin interface
+-#LoadPlugin iptables
++LoadPlugin iptables
+ #LoadPlugin ipmi
+ ##LoadPlugin ipvs
+ #LoadPlugin irq
+@@ -95,7 +95,7 @@ LoadPlugin memory
+ #LoadPlugin mysql
+ ##LoadPlugin netapp
+ ##LoadPlugin netlink
+-#LoadPlugin network
++LoadPlugin network
+ #LoadPlugin nfs
+ #LoadPlugin nginx
+ ##LoadPlugin notify_desktop
+@@ -113,7 +113,7 @@ LoadPlugin memory
+ #LoadPlugin ping
+ #LoadPlugin postgresql
+ #LoadPlugin powerdns
+-#LoadPlugin processes
++LoadPlugin processes
+ #LoadPlugin protocols
+ #<LoadPlugin python>
+ #  Globals true
+@@ -124,7 +124,7 @@ LoadPlugin memory
+ #LoadPlugin sensors
+ #LoadPlugin serial
+ #LoadPlugin snmp
+-#LoadPlugin swap
++LoadPlugin swap
+ #LoadPlugin table
+ #LoadPlugin tail
+ ##LoadPlugin tape
+@@ -134,10 +134,10 @@ LoadPlugin memory
+ #LoadPlugin thermal
+ ##LoadPlugin tokyotyrant
+ #LoadPlugin unixsock
+-#LoadPlugin uptime
++LoadPlugin uptime
+ #LoadPlugin users
+ #LoadPlugin uuid
+-#LoadPlugin vmem
++LoadPlugin vmem
+ #LoadPlugin vserver
+ #LoadPlugin wireless
+ #LoadPlugin write_http
+@@ -368,6 +368,11 @@ LoadPlugin memory
+ #<Plugin iptables>
+ #	Chain table chain
+ #</Plugin>
++<Plugin iptables>
++	Chain "filter" "INPUT"
++	Chain "filter" "FORWARD"
++	Chain "filter" "OUTPUT"
++</Plugin>
+ 
+ #<Plugin irq>
+ #	Irq 7
+@@ -558,6 +563,9 @@ LoadPlugin memory
+ #	# "garbage collection"
+ #	CacheFlush 1800
+ #</Plugin>
++<Plugin network>
++	Server "192.168.2.2"
++</Plugin>
+ 
+ #<Plugin nginx>
+ #	URL "http://localhost/status?auto"

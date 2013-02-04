@@ -1,0 +1,8 @@
+--- etc/sysconfig/init	2012-06-22 14:52:25.000000000 -0500
++++ /etc/sysconfig/init	2012-11-13 07:52:45.218337282 -0600
+@@ -23,4 +23,4 @@
+ ACTIVE_CONSOLES=/dev/tty[1-6]
+ # Set to '/sbin/sulogin' to prompt for password on single-user mode
+ # Set to '/sbin/sushell' otherwise
+-SINGLE=/sbin/sushell
++SINGLE=/sbin/sulogin

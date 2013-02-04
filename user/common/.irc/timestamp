@@ -1,0 +1,58 @@
+###
+### vim:ts=8 ai si sw=4 sta sm:
+### $Id: timestamp,v 1.1.1.1 2011/07/01 12:40:21 ralf Exp $
+### Timestamp lines. But keep it nice.
+###
+# requires:	nothing (so far)
+# warning:	redefines some public output.
+
+alias ts.help {
+	echo *** This is the timestamp Script.
+	echo *** features include:
+	echo *** + Whenever someone says something, a timestamp is tacked
+	echo ***   onto the end of the line.
+}
+
+eval if (!match(%+ts% $script_info)){
+assign script_info $script_info+ts
+};set client_info Sec$script_info
+
+on ^msg * _.onmsgprnt $0-
+alias _.onmsgprnt echo [$0] $1- $ts.time($encode(msg))
+
+on ^public * _.onpublicprt $0-
+alias _.onpublicprt echo <$0> $2- $ts.time($encode($tolower($1)))
+
+# The send_* are not striclty necessary, but they make things look sane.
+on ^send_public * _.onsendpublicprt $0-
+alias _.onsendpublicprt if ([$0]==[$C]){echo <${N}> $1- $ts.time($encode($tolower($0)))}{echo >$0> <${N}> $1-}
+
+on ^send_action * _.onsendactionprt $0-
+alias _.onsendactionprt if ([$0]==[$C]){echo * ${N} $1- $ts.time($encode($tolower($0)))}{echo >$0> * ${N} $1-}
+
+on ^send_msg * _.onsendmsgprnt $0-
+alias _.onsendmsgprnt echo -> [$0] $1-
+
+# Another alternative would be ot use on window. but ircII is buggy...
+#alias ow on ^WINDOW "$WINNUM() *" _.onwindowprt $$0-
+#alias ow- on ^WINDOW -"$WINNUM() *"
+#alias _.ONwindowPRT echo $1- $ts.time($encode(window$0))
+
+alias ts.time {
+	@ ts.now = mid(11 5 $stime($time()))
+	if (ts.now == ts.last[$0]) {
+		@ function_return = []
+	}{
+		@ function_return = [\[] ## ts.now ## [\]]
+		assign ts.last.$0 $ts.now
+	}
+	^assign -ts.now
+}
+
+alias last {
+	if ([$0]){
+		echo *** Lastmsg on $0: $(ts.last.$encode($0))
+	}{
+		last $C
+	}
+}

@@ -1,0 +1,27 @@
+[startup]   	{exec fbpager}
+[app] (name=xclock) (class=XClock)
+  [Deco]	{BORDER}
+  [Hidden]	{yes}
+  [Sticky]	{yes}
+[end]
+[app] (name=xbiff) (class=XBiff)
+  [Deco]	{BORDER}
+  [Hidden]	{yes}
+  [Sticky]	{yes}
+[end]
+[app] (name=xeyes) (class=XEyes)
+  [Deco]	{BORDER}
+  [Hidden]	{yes}
+  [Sticky]	{yes}
+[end]
+[app] (name=xload) (class=XLoad)
+  [Deco]	{BORDER}
+  [Hidden]	{yes}
+  [Sticky]	{yes}
+[end]
+[app] (name=x11) (class=MPlayer)
+[end]
+[app] (name=xv) (class=MPlayer)
+  [Maximized]	{no}
+  [Layer]	{8}
+[end]

@@ -1,0 +1,10 @@
+--- etc/crontab	2011-07-01 07:40:20.000000000 -0500
++++ /etc/crontab	2011-11-04 19:01:48.000000000 -0500
+@@ -23,3 +23,7 @@
+ # Adjust the time zone if the CMOS clock keeps local time, as opposed to
+ # UTC time.  See adjkerntz(8) for details.
+ 1,31	0-5	*	*	*	root	adjkerntz -a
++
++0 3 * * * root /usr/sbin/portsnap cron && portsnap update
++0 3 * * * root /usr/sbin/freebsd-update cron
++0 3 * * * root /usr/local/sbin/portaudit -Fd

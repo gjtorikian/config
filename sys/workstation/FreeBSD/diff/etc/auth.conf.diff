@@ -1,0 +1,7 @@
+--- etc/auth.conf	2011-02-16 20:19:39.000000000 -0600
++++ /etc/auth.conf	2011-04-18 10:01:33.000000000 -0500
+@@ -6,3 +6,4 @@
+ #
+ 
+ # crypt_default	=	md5 des
++crypt_default	=	blf

@@ -1,0 +1,11 @@
+--- etc/locate.rc	2011-02-16 20:19:39.000000000 -0600
++++ /etc/locate.rc	2011-06-07 18:42:43.000000000 -0500
+@@ -16,7 +16,7 @@
+ #SEARCHPATHS="/"
+ 
+ # directories unwanted in output
+-#PRUNEPATHS="/tmp /usr/tmp /var/tmp /var/db/portsnap"
++PRUNEPATHS="/home /usr/home /tmp /usr/tmp /var/tmp /var/db/portsnap"
+ 
+ # filesystems allowed. Beware: a non-listed filesystem will be pruned
+ # and if the SEARCHPATHS starts in such a filesystem locate will build

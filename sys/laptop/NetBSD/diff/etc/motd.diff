@@ -1,0 +1,8 @@
+--- ./etc/motd	2010-11-07 08:26:59.000000000 -0600
++++ /etc/motd	2011-04-12 20:17:59.000000000 -0500
+@@ -1,4 +1,4 @@
+-NetBSD ?.? (UNKNOWN)
++NetBSD 5.1 (GENERIC) #0: Sun Nov 7 14:39:56 UTC 2010
+ 
+ Welcome to NetBSD!
+ 

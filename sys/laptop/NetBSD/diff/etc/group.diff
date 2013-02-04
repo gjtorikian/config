@@ -1,0 +1,16 @@
+--- ./etc/group	2010-11-07 08:26:59.000000000 -0600
++++ /etc/group	2011-06-18 02:55:24.000000000 -0500
+@@ -1,4 +1,4 @@
+-wheel:*:0:root
++wheel:*:0:root,user
+ daemon:*:1:daemon
+ kmem:*:2:root
+ sys:*:3:root
+@@ -27,3 +27,7 @@
+ users:*:100:
+ dialer:*:117:
+ nogroup:*:32766:
++user:*:1000:
++dbus:*:1001:
++polkit:*:1002:
++news:*:1003:

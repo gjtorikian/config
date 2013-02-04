@@ -1,0 +1,11 @@
+--- etc/locate.rc	Fri Jul  1 07:40:17 2011
++++ /etc/locate.rc	Thu Aug 18 17:07:09 2011
+@@ -13,7 +13,7 @@
+ SEARCHPATHS="/"
+ 
+ # directories unwanted in output
+-PRUNEPATHS="/tmp /var/tmp /usr/tmp"
++PRUNEPATHS="/cdrom /home /mnt /tmp /var/tmp /usr/tmp"
+ 
+ # filesystems allowed. Beware: a non-listed filesystem will be pruned
+ # and if the SEARCHPATHS starts in such a filesystem locate will build

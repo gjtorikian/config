@@ -1,0 +1,11 @@
+--- etc/login.conf	2011-02-16 20:19:39.000000000 -0600
++++ /etc/login.conf	2011-04-18 10:01:50.000000000 -0500
+@@ -23,7 +23,7 @@
+ # AND SEMANTICS'' section of getcap(3) for more escape sequences).
+ 
+ default:\
+-	:passwd_format=md5:\
++	:passwd_format=blf:\
+ 	:copyright=/etc/COPYRIGHT:\
+ 	:welcome=/etc/motd:\
+ 	:setenv=MAIL=/var/mail/$,BLOCKSIZE=K,FTP_PASSIVE_MODE=YES:\

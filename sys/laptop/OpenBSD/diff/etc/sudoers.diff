@@ -1,0 +1,26 @@
+--- etc/sudoers	Wed Mar  2 07:51:57 2011
++++ /etc/sudoers	Mon Jun 27 02:55:22 2011
+@@ -23,7 +23,7 @@
+ Defaults env_keep +="WRKOBJDIR"
+ 
+ # Uncomment to disable the lecture the first time you run sudo
+-#Defaults !lecture
++Defaults !lecture
+ 
+ # Uncomment to preserve the environment for users in group wheel
+ #Defaults:%wheel !env_reset
+@@ -35,7 +35,7 @@
+ 
+ # Uncomment to allow people in group wheel to run all commands
+ # and set environment variables.
+-# %wheel	ALL=(ALL) SETENV: ALL
++%wheel	ALL=(ALL) SETENV: ALL
+ 
+ # Same thing without a password
+ # %wheel	ALL=(ALL) NOPASSWD: SETENV: ALL
+@@ -43,3 +43,5 @@
+ # Samples
+ # %users  ALL=/sbin/mount /cdrom,/sbin/umount /cdrom
+ # %users  localhost=/sbin/shutdown -h now
++
++Defaults targetpw

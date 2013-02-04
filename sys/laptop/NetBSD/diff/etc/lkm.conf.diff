@@ -1,0 +1,7 @@
+--- ./etc/lkm.conf	2010-11-07 08:26:59.000000000 -0600
++++ /etc/lkm.conf	2011-05-17 15:29:50.000000000 -0500
+@@ -4,3 +4,4 @@
+ #
+ # path		options		entry		postinstall	output		when
+ #/lkm/if_ipl.o	-		-		-		-		-
++/usr/lkm/pf.o	-		-		-		-		BEFORENET

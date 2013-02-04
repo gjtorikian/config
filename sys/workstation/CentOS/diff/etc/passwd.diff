@@ -1,0 +1,11 @@
+--- etc/passwd	2012-09-10 10:37:51.044519925 -0500
++++ /etc/passwd	2012-09-26 18:29:26.962189616 -0500
+@@ -22,7 +22,7 @@ saslauth:x:499:76:"Saslauthd user":/var/
+ postfix:x:89:89::/var/spool/postfix:/sbin/nologin
+ sshd:x:74:74:Privilege-separated SSH:/var/empty/sshd:/sbin/nologin
+ tcpdump:x:72:72::/:/sbin/nologin
+-user:x:500:500:user:/home/user:/bin/bash
++user:x:500:500:user:/home/user:/bin/zsh
+ rpc:x:32:32:Rpcbind Daemon:/var/cache/rpcbind:/sbin/nologin
+ rtkit:x:498:496:RealtimeKit:/proc:/sbin/nologin
+ pulse:x:497:495:PulseAudio System Daemon:/var/run/pulse:/sbin/nologin

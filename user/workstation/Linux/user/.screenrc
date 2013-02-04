@@ -1,0 +1,6 @@
+startup_message off
+vbell off
+
+hardstatus on
+caption always "%?%F%{-}%h%{+r} %= %{-} %n "
+hardstatus alwayslastline "%{-}%-Lw%{+r} %n%f %t %{-}%+Lw %=%{+r} %H%?  %l  %C %a %D %M %d %Y"

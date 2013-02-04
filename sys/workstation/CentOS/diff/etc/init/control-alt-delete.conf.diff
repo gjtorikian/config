@@ -1,0 +1,8 @@
+--- etc/init/control-alt-delete.conf	2012-04-27 04:48:34.000000000 -0500
++++ /etc/init/control-alt-delete.conf	2012-11-13 07:50:25.984355164 -0600
+@@ -5,4 +5,4 @@
+ 
+ start on control-alt-delete
+ 
+-exec /sbin/shutdown -r now "Control-Alt-Delete pressed"
++#exec /sbin/shutdown -r now "Control-Alt-Delete pressed"

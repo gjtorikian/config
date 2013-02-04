@@ -1,0 +1,7 @@
+--- etc/profile.d/cuda.sh	1969-12-31 18:00:00.000000000 -0600
++++ /etc/profile.d/cuda.sh	2012-09-18 20:11:43.467205369 -0500
+@@ -0,0 +1,4 @@
++export LD_LIBRARY_PATH=/usr/lib/nvidia:/usr/local/cuda/lib64:$LD_LIBRARY_PATH
++export LIBRARY_PATH="/usr/lib64/nvidia:$LIBRARY_PATH"
++export LPATH=/usr/lib64/nvidia
++export PATH=/usr/local/cuda/bin:$PATH

@@ -1,0 +1,16 @@
+--- etc/group	2012-09-10 10:37:51.013645109 -0500
++++ /etc/group	2012-09-26 18:29:26.998439185 -0500
+@@ -44,7 +44,7 @@ slocate:x:21:
+ user:x:500:user
+ ctapiusers:x:499:
+ cgred:x:498:
+-fuse:x:497:
++fuse:x:497:user
+ rpc:x:32:
+ rtkit:x:496:
+ pulse:x:495:
+@@ -64,3 +64,4 @@ kvm:x:36:qemu
+ qemu:x:107:
+ rpcuser:x:29:
+ nfsnobody:x:65534:
++jackuser:x:489:

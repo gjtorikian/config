@@ -1,0 +1,17 @@
+--- ./etc/master.passwd	2010-11-07 08:26:59.000000000 -0600
++++ /etc/master.passwd	2011-06-18 02:55:24.000000000 -0500
+@@ -1,4 +1,4 @@
+-root::0:0::0:0:Charlie &:/root:/bin/csh
++root:$2a$07$HbQi8BczqACyVCMHSNoxWO4rnNHokiOkyWkATi49/hkxXuJm5jlMC:0:0::0:0:Charlie &:/root:/bin/sh
+ toor:*:0:0::0:0:Bourne-again Superuser:/root:/bin/sh
+ daemon:*:1:1::0:0:The devil himself:/:/sbin/nologin
+ operator:*:2:5::0:0:System &:/usr/guest/operator:/sbin/nologin
+@@ -16,3 +16,8 @@
+ _httpd:*:24:24::0:0:& pseudo-user:/var/www:/sbin/nologin
+ uucp:*:66:1::0:0:UNIX-to-UNIX Copy:/nonexistent:/sbin/nologin
+ nobody:*:32767:39::0:0:Unprivileged user:/nonexistent:/sbin/nologin
++user:$2a$07$nIfZlPzsCG1QEXA3tO2nHOMi2FpCRuPnudUBPr4.nT.C8Vn1vPmxm:1000:1000::0:0::/home/user:/bin/sh
++dbus:*************:1001:1001::0:0:System message bus:/var/run/dbus:/sbin/nologin
++polkit:*************:1002:1002::0:0:policykit polkit user:/nonexistent:/sbin/nologin
++haldaemon:*************:1003:5::0:0:hal haldaemon user:/var/run/hal:/sbin/nologin
++cyrus:*************:1004:6::0:0:cyrus-sasl cyrus user:/nonexistent:/bin/sh

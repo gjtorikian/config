@@ -1,0 +1,10 @@
+--- etc/X11/xdm/Xresources	Fri Jul  1 07:40:18 2011
++++ /etc/X11/xdm/Xresources	Thu Aug 18 03:22:34 2011
+@@ -131,6 +131,7 @@
+ XConsole.verbose:	true
+ XConsole*iconic:	true
+ XConsole*font:		fixed
++XConsole*text.wrap:	line
+ 
+ Chooser*geometry:		640x480
+ Chooser*allowShellResize:	false

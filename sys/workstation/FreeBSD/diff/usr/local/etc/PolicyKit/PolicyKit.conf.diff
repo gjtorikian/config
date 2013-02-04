@@ -1,0 +1,12 @@
+--- a/PolicyKit.conf	2011-09-07 04:16:44.000000000 -0500
++++ b/PolicyKit.conf	2011-09-07 04:18:38.000000000 -0500
+@@ -10,4 +10,9 @@
+ 	<return result="yes"/>
+     </match>
+     <define_admin_auth group="wheel"/>
++    <match action="org.freedesktop.hal.storage.mount-removable">
++        <match user="user">
++            <return result="yes"/>
++        </match>
++    </match>
+ </config>

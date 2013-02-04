@@ -1,0 +1,13 @@
+# NetBSD /etc/fstab
+# See /usr/share/examples/fstab/ for more examples.
+/dev/wd0a	/	ffs	rw	1	1
+/dev/cgd0a	none	swap	sw	0	0
+/dev/cgd0a	/tmp	mfs	rw,-s=128m,nosuid,noexec	0	0
+/dev/cgd0b	/usr	ffs	rw	1	2
+/dev/cgd0e	/var	ffs	rw	1	3
+/dev/cgd0f	/home	ffs	rw	1	4
+kernfs		/kern	kernfs	rw
+ptyfs		/dev/pts	ptyfs	rw
+procfs		/proc	procfs	rw
+/dev/cd0a		/cdrom	cd9660	ro,noauto
+user@server:/data	/mnt	psshfs rw,noauto

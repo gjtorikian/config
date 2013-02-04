@@ -1,0 +1,18 @@
+--- etc/fstab	2012-09-10 06:17:07.827401985 -0500
++++ /etc/fstab	2012-09-12 22:59:26.110915108 -0500
+@@ -6,10 +6,12 @@
+ # Accessible filesystems, by reference, are maintained under '/dev/disk'
+ # See man pages fstab(5), findfs(8), mount(8) and/or blkid(8) for more info
+ #
+-/dev/mapper/VolGroup-lv_root /                       ext4    defaults        1 1
+-UUID=c7262979-382d-48fc-abb7-dd7782566063 /boot                   ext4    defaults        1 2
+-/dev/mapper/VolGroup-lv_home /home                   ext4    defaults        1 2
++/dev/mapper/VolGroup-lv_root /                       ext4    defaults,barrier=0        1 1
++UUID=c7262979-382d-48fc-abb7-dd7782566063 /boot                   ext4    defaults,barrier=0       1 2
++/dev/mapper/VolGroup-lv_home /home                   ext4    defaults,barrier=0        1 2
+ /dev/mapper/VolGroup-lv_swap swap                    swap    defaults        0 0
++/dev/mapper/VolGroup2-lv_crash /var/crash	ext4	defaults,barrier=0 1 2
++/dev/mapper/VolGroup2-lv_vmware /var/lib/vmware	ext4	defaults,barrier=0 1 2
+ tmpfs                   /dev/shm                tmpfs   defaults        0 0
+ devpts                  /dev/pts                devpts  gid=5,mode=620  0 0
+ sysfs                   /sys                    sysfs   defaults        0 0

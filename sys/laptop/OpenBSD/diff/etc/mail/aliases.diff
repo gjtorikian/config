@@ -1,0 +1,11 @@
+--- etc/mail/aliases	Wed Mar  2 07:51:55 2011
++++ /etc/mail/aliases	Tue Jun 28 11:42:21 2011
+@@ -69,7 +69,7 @@
+ sshd:   /dev/null
+ 
+ # Well-known aliases -- these should be filled in!
+-# root:
++root: user
+ # manager:
+ # dumper:
+ 

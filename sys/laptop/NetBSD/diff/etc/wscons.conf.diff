@@ -1,0 +1,8 @@
+--- ./etc/wscons.conf	2010-11-07 08:26:59.000000000 -0600
++++ /etc/wscons.conf	2011-04-13 14:31:24.000000000 -0500
+@@ -47,3 +47,5 @@
+ # Change keyboard repeat speed to faster settings.
+ #setvar	wskbd	repeat.del1	250
+ #setvar	wskbd	repeat.deln	30
++
++setvar	wskbd	bell.pitch	0

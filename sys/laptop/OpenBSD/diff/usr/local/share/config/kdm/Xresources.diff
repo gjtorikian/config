@@ -1,0 +1,8 @@
+--- Xresources	Wed Aug 17 17:57:38 2011
++++ /usr/local/share/config/kdm/Xresources	Wed Aug 17 18:02:51 2011
+@@ -141,3 +141,5 @@
+ Chooser*label.foreground: black
+ Chooser*list.font:	  lucidasanstypewriter-12
+ Chooser*Command.font:	  -adobe-helvetica-medium-r-normal--18-*-p-*-iso8859-1
++
++xconsole.text.wrap:	line

@@ -1,0 +1,30 @@
+account gmail {
+	set folder=imaps://XXX@imap.gmail.com
+	set from="XXX <XXX@gmail.com>"
+	set imap-use-starttls
+	set password-XXX@imap.gmail.com="XXX"
+	set record=+Sent MBOX=+mbox outfolder
+	set smtp-auth-password="XXX"
+	set smtp-auth-user="XXX"
+	set smtp-auth="login"
+	set smtp-use-starttls
+	set smtp="smtp.gmail.com:587"
+	shortcut allmail +[Gmail]/All\ Mail
+	shortcut drafts +[Gmail]/Drafts
+	shortcut sent +[Gmail]/Sent\ Mail
+	shortcut spam +[Gmail]/Spam
+	shortcut trash +[Gmail]/Trash
+}
+
+set EDITOR=vim
+set TMPDIR=~/tmp
+set askattach
+set askcc
+set autoinc
+set autothread
+set imap-cache=~/tmp/imap-cache
+set imap-keepalive=240
+set imap-list-depth=5
+set pipe-text/html="lynx -dump -force_html /dev/stdin"
+set pop3-keepalive=30
+set signature=~/.sig

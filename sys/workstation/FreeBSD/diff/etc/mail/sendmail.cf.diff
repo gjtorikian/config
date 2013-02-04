@@ -1,0 +1,11 @@
+--- etc/mail/sendmail.cf	2011-02-16 20:19:40.000000000 -0600
++++ /etc/mail/sendmail.cf	2011-04-18 10:08:12.000000000 -0500
+@@ -277,7 +277,7 @@
+ 
+ O DaemonPortOptions=Name=IPv4, Family=inet
+ O DaemonPortOptions=Name=IPv6, Family=inet6, Modifiers=O
+-O DaemonPortOptions=Port=587, Name=MSA, M=E
++#O DaemonPortOptions=Port=587, Name=MSA, M=E
+ 
+ # SMTP client options
+ #O ClientPortOptions=Family=inet, Address=0.0.0.0

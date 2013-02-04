@@ -1,0 +1,8 @@
+apmd_flags=-A
+inetd=NO
+ntpd_flags=-s
+syslogd_flags=-ss
+xdm_flags=
+nfsd_flags="-tun 4"
+#dhcpd_flags=
+inetd_flags=

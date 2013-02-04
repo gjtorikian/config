@@ -1,0 +1,275 @@
+# ~/.fvwm/config
+
+# Environment {{{
+SetEnv FILEMANAGER xfe
+SetEnv TERM urxvt
+SetEnv TMPDIR "/home/user/tmp"
+ImagePath /usr/X11R6/share/icons:/usr/X11R6/include/X11/bitmaps:$[FVWM_USERDIR]/icons:$[FVWM_USERDIR]/pixmaps:$[HOME]/.icons:+
+# }}}
+4 Initialization {{{
+DestroyFunc StartFunction
+AddToFunc StartFunction
++ I Module FvwmButtons Slider 
+
+DestroyFunc ExitFunction
+AddToFunc ExitFunction I Test (!ToRestart) \
+       Exec rm -f $[FVWM_USERDIR]/icon.tmp.*
+
+DestroyFunc InitFunction
+AddToFunc InitFunction
++ I Exec xsetroot -solid rgb:6/6/6
+#+ I Exec display -window root $[FVWM_USERDIR]/pixmaps/slate.xpm
+# }}}
+# Buttons {{{
+DestroyModuleConfig Slider: *
+*Slider: Geometry 15x100+0+0
+*Slider: (Panel(right,indicator) Panel \
+	'Module FvwmButtons Panel')
+*Panel: Rows 1
+*Panel: Columns 6
+*Panel: Geometry 600x100
+*Panel: (2x1,Container(Rows 2,Frame 1))
+*Panel: (Swallow xclock 'Exec xclock &')
+*Panel: (End)
+*Panel: (2x1,Container(Rows 2,Frame 1))
+*Panel: (Swallow xbiff 'Exec xbiff -file ~/mbox &',Action(Mouse 1) 'Exec $[TERM] -e sh -c "/usr/local/bin/mailx -f ~/mbox"')
+*Panel: (Swallow xeyes 'Exec xeyes &')
+*Panel: (2x1,Swallow xload 'Exec xload &',Action(Mouse 1) 'Exec $[TERM] -e top')
+*Panel: (End)
+#*Panel: (2x1,Container(Rows 2,Frame 1))
+#*Panel (Swallow xnetload 'Exec xnetload -if eth0 -ni &',Action(Mouse 1) 'Exec $[TERM] -e "sudo iftop"')
+#*Panel: (End)
+*Panel: (2x1,Swallow FvwmPager FvwmPager)
+*Panel: (3x1,Swallow FvwmIconMan FvwmIconMan)
+#*Panel: (4x1,Swallow(UseOld,NoClose) xconsole 'Exec xconsole &',Action (Mouse 1) `Exec $[TERM] -e 'dmesg | less'`)
+# }}}
+# Style {{{
+# Style stylename options ...
+DefaultFont -schumacher-clean-medium-r-normal-*-12-120-75-75-c-60-iso10646-1
+#DefaultFont -misc-fixed-medium-r-semicondensed-*-13-120-75-75-c-60-iso10646-1 
+
+SnapAttraction 8 SameType
+
+Style * MouseFocusClickRaises,GrabFocus,NoIcon
+
+Style xosview !Title,Sticky,WindowListSkip,CirculateSkip
+Style xconsole !Title,Sticky,CirculateSkip
+
+Style Fvwm* !Title,!Handles,CirculateSkip,Sticky,WindowListSkip
+
+#*FvwmPager: MiniIcons
+#*FvwmPager: Pixmap slate.xpm
+*FvwmPager: Balloons
+*FvwmPager: SmallFont -*-*-*-*-*-*-6-*-*-*-*-*-*-*
+*FvwmPager: UseSkipList
+*FvwmPager: WindowLabelFormat %r
+
+*FvwmIconMan: Font -*-*-*-*-*-*-6-*-*-*-*-*-*-*
+
+#TitleStyle Height 18
+#TitleStyle AllActive TiledPixmap $[HOME]/.pixmaps/title_active.png
+#TitleStyle AllInactive TiledPixmap $[HOME]/.pixmaps/title_inactive.png
+
+#ButtonStyle 1 Pixmap window_sticky.xpm
+#ButtonStyle 3 Pixmap window_shade.xpm
+#ButtonStyle 6 Pixmap window_close.xpm
+#ButtonStyle 4 Pixmap window_minimize.xpm
+#ButtonStyle 2 Pixmap window_maximize.xpm
+
+#CursorStyle ROOT cursor.png 0 0
+# }}}
+# Misc Settings {{{
+EdgeResistance -1 0
+DesktopSize 3x3
+DesktopName 0 Desktop
+# }}}
+# Mouse Bindings {{{
+# Mouse [(window)] Button Context Modifiers Function
+# title-bar buttons [1 3 5 7 9    0 8 6 4 2]
+Mouse 1 1 A Stick
+Mouse 1 3 A WindowShade
+Mouse 1 6 A Close
+Mouse 1 4 A Iconify
+Mouse 1 2 A Maximize
+Mouse 1 I A Iconify
+Mouse 1 R A Menu Root
+#Mouse 1 T A WindowShade
+#Mouse 1 W A Raise
+Mouse 2 R A WindowList NoIcons
+Mouse 3 RFT A Menu Window
+Mouse 4 FT A WindowShade
+Mouse 4 R A Scroll +100 0
+Mouse 5 FT A WindowShade
+Mouse 5 R A Scroll -100 0
+# }}}
+# Key Bindings {{{
+# Key [(window)] Keyname Context Modifiers Function
+Key F1 A M Exec $[TERM]
+Key F2 A M Exec gmrun
+Key F3 A M Module FvwmConsole -terminal $[TERM]
+
+Key Return WTSF MS Function Fullscreen
+Key c WTSF MS Close
+Key f WTSF MS Maximize
+Key space WTSF M Raise
+Key space WTSF MS Lower
+
+Key Print WTSF MS Exec `import -window $[w.id] "png:$[TMPDIR]/$(uname -s)_$(date '+%F_%T%z')_$[w.resource].png"`
+Key Print A M Exec `import -window root "png:$[TMPDIR]/$(uname -s)_$(date '+%F_%T%z')_$[desk.name$[desk.n]].png"`
+
+Key m A M Menu window c c Window
+Key m A MS Menu root c c MenuRoot
+Key p A M Function PressButton "Slider"
+Key x A MS Exec xscreensaver-command -lock
+
+Key Tab A M WindowList Root c c \
+	CurrentDesk,NoGeometry,CurrentAtEnd,IconifiedAtEnd
+#Key Tab A M Next (CurrentPage) Function FocusRaise
+#Key Tab A MS Prev (CurrentPage) Function FocusRaise
+Key j A M Next (CurrentPage) Function FocusRaise
+Key k A M Prev (CurrentPage) Function FocusRaise
+
+Key 1 A M GoToPage 0 0
+Key 2 A M GoToPage 1 0
+Key 3 A M GoToPage 2 0
+Key 4 A M GoToPage 0 1
+Key 5 A M GoToPage 1 1
+Key 6 A M GoToPage 2 1
+Key 7 A M GoToPage 0 2
+Key 8 A M GoToPage 1 2
+Key 9 A M GoToPage 2 2
+
+Key 1 WTSF MS MoveToPage 0 0
+Key 2 WTSF MS MoveToPage 1 0
+Key 3 WTSF MS MoveToPage 2 0
+Key 4 WTSF MS MoveToPage 0 1
+Key 5 WTSF MS MoveToPage 1 1
+Key 6 WTSF MS MoveToPage 2 1
+Key 7 WTSF MS MoveToPage 0 2
+Key 8 WTSF MS MoveToPage 1 2
+Key 9 WTSF MS MoveToPage 2 2
+
+Key h A MC Scroll -100 +0
+Key k A MC Scroll +0 -100
+Key l A MC Scroll +100 +0
+Key j A MC Scroll +0 +100
+
+Key h WT MS MoveToPage -1w 0w
+Key j WT MS MoveToPage 0w +1w
+Key k WT MS MoveToPage 0w -1w
+Key l WT MS MoveToPage +1w 0w
+
+Key h WSFT MCS Function MoveToPageWithWindow -1w 0w
+Key j WSFT MCS Function MoveToPageWithWindow 0w +1w
+Key k WSFT MCS Function MoveToPageWithWindow 0w -1w
+Key l WSFT MCS Function MoveToPageWithWindow +1w 0w
+# }}}
+# Functions {{{
+DestroyFunc PressButton
+AddToFunc PressButton
++ I SetEnv POINTER_X $[pointer.x]
++ I SetEnv POINTER_Y $[pointer.y]
++ I All [$0] WarpToWindow 3p 3p
++ I FakeClick depth 0 press 1 wait 10 release 1
++ I WindowId root 1 WarpToWindow $[POINTER_X]p $[POINTER_Y]p
+
+DestroyFunc FocusRaise
+AddToFunc FocusRaise
++ I Focus
++ I Raise
+
+DestroyFunc MoveToPageWithWindow
+AddToFunc MoveToPageWithWindow
++ I MoveToPage $0 $1
++ I WIndowId $[w.id] WarpToWindow 1 1
+
+DestroyFunc Fullscreen
+AddToFunc Fullscreen
++ I Maximize 100 100
++ I Current (!State 11) WindowStyle NoTitle,!Borders
++ I Current (State 11) WindowStyle Title,Borders
++ I Current RefreshWindow
++ I Current (!State 11) Maximize true
++ I Current (State 11) Maximize false
++ I Current State 11 toggle
+
+# Menus {{{1
+# Window {{{
+DestroyMenu MoveToPage
+AddToMenu MoveToPage "Page" Title
++ "1" MoveToPage 0 0
++ "2" MoveToPage 1 0
++ "3" MoveToPage 2 0
++ "4" MoveToPage 0 1
++ "5" MoveToPage 1 1
++ "6" MoveToPage 2 1
++ "7" MoveToPage 0 2
++ "8" MoveToPage 1 2
++ "9" MoveToPage 2 2
+
+DestroyMenu "Window"
+AddToMenu "Window" "Window" Title
++ "Move" Pick Move
++ "Move To Page" Popup MoveToPage
++ "Resize" Pick Resize
++ "Raise" Raise
++ "Lower" Lower
++ "(De)Iconify" Iconify
++ "(Un)Stick" Stick
++ "(Un)Shade" WindowShade
++ "(Un)Maximize" Function FullScreen
++ "" Nop
++ "Identify" Module FvwmIdent
++ "" Nop
++ "Close" Close
++ "Delete" Delete
++ "Destroy" Destroy
++ "" Nop
++ "Refresh Screen" Refresh
++ "Print root" Exec `import -window root "png:$[TMPDIR]/$(uname -s)_$(date '+%F_%T%z')_$[desk.name$[desk.n]].png"` 
++ "Print window" ThisWindow Exec `import -window $[w.id] "png:$[TMPDIR]/$(uname -s)_$(date '+%F_%T%z')_$[w.resource].png"`
++ "" Nop
++ "Iconify" Iconify
++ "Maximize" Maximize
++ "Fullscreen" Function Fullscreen
++ "" Nop
++ "Rearrange" Nop
++ "&1 cascade" FvwmRearrange -cascade -resize 0 100p 600p 600p
++ "&2 grid vertical" FvwmRearrange -tile -mn 2 -v 100p 100
++ "&3 tile vertical" FvwmRearrange -tile -v 100p 100
++ "&4 tile horizontal" FvwmRearrange -tile -h 0 100p 100
++ "&5 cascade (full)" FvwmRearrange -cascade -resize 0 0 90 90
++ "&6 tile vertical (full)" FvwmRearrange -tile -v
++ "&7 grid vertical (full)" FvwmRearrange -tile -mn 2 -v
++ "&8 tile horizontal (full)" FvwmRearrange -tile -h
++ "&9 grid horizontal (full)" FvwmRearrange -tile -mn 2 -h
+                   + "
+                   + "
+AddToFunc FuncFvwmMenuDirectory
++ I PipeRead "fvwm-menu-directory -d '$0' --exec-file=xdg-open"
+
+AddToMenu Browse MissingSubMenuFunction FuncFvwmMenuDirectory
++ "/" Popup /
++ "~" Popup ~
++ "/tmp" Popup /tmp
+# }}}
+# Root {{{
+DestroyMenu Root
+AddToMenu Root "Menu" Title
++ "&Terminal" Exec $[TERM]
++ "&Browser" Exec firefox
++ "&File Manager" Exec xfe
++ "&Mixer" Exec xmixer -n
++ "&Calculator" Exec $[TERM] -e bc
++ "&Manual Browser" Exec xman
++ "Br&owse" Popup Browse
++ "" Nop
++ "&Lock screen" Exec xscreensaver-command -lock
++ "" Nop
++ "&Restart" Restart fvwm -f $./config
++ "&Quit" Quit
++ "&Console" Module FvwmConsole -terminal $[TERM]
+# }}}
+# }}}
+
+#  vim: set foldmethod=marker ft=fvwm:

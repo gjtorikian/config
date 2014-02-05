@@ -3,7 +3,7 @@ umask 022
 PATH=$HOME/bin:$PATH:/usr/local/bin
 export EDITOR=vim
 export PAGER=less
-export LESS="-e -i -m -Q -W -X"
+export LESS="-e -i -m -Q -R -W -X"
 export TMPDIR=$HOME/tmp
 export PYTHONPATH=$HOME/lib/python:/usr/local/lib64/python2.6/site-packages:$PYTHONPATH
 unset HISTFILE

@@ -28,7 +28,7 @@ set hlsearch
 set ignorecase
 set incsearch
 set laststatus=2
-set list
+"set list
 set listchars=tab:▷⋅,trail:· ",eol:$
 set mouse=a
 set noerrorbells
@@ -37,6 +37,7 @@ set ruler
 set scrolloff=5
 set showcmd
 set smartcase
+set t_Co=256
 set t_vb=
 set textwidth=72
 set wildmenu
@@ -44,6 +45,8 @@ set wildmode=list:longest,full
 
 filetype plugin indent on
 syntax on
+
+hi ColorColumn ctermbg=232
 
 nnoremap <silent> <Esc> :noh<Return><Esc>
 

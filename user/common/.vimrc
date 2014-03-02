@@ -22,7 +22,7 @@ set background=light
 set backspace=2
 set cmdheight=2
 set colorcolumn=+1
-set completeopt=menuone,preview
+set completeopt=menuone,preview,longest
 set foldenable
 set hlsearch
 set ignorecase

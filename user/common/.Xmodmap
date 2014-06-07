@@ -1,0 +1,4 @@
+keycode 108 = Mode_switch
+keysym a = a A adiaeresis Adiaeresis
+keysym o = o O odiaeresis Odiaeresis
+keysym u = u U udiaeresis Udiaeresis

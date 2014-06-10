@@ -9,6 +9,7 @@ mkdir -p ~/.fonts
 xset +fp ~/.fonts/
 xset fp rehash
 xrdb -load ~/.Xdefaults
+xmodmap ~/.Xmodmap
 xsetroot -solid rgb:0/0/0
 xset b off
 #xidle &

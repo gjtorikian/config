@@ -1,5 +1,6 @@
 UXTerm*background: rgb:0/0/0
 UXTerm*foreground: rgb:c/5/0
+!UXTerm*foreground: rgb:a0/a0/a0
 UXTerm*loginShell: true
 UXTerm*font: -schumacher-clean-medium-r-normal-*-12-120-75-75-c-60-iso10646-1
 
@@ -17,22 +18,16 @@ URxvt.background: rgb:0/0/0
 URxvt.font: -schumacher-clean-medium-r-normal-*-12-120-75-75-c-60-iso10646-1
 URxvt.boldFont: -schumacher-clean-bold-*-*-*-*-*-*-*-*-*-*-*
 URxvt.foreground: rgb:f/6/0
+URxvt.loginShell: True
 !URxvt.foreground: rgb:0/c/0
 URxvt.keysym.M-Escape: perl:keyboard-select:activate
 URxvt.keysym.M-s: perl:keyboard-select:search
 URxvt.keysym.M-u: perl:url-select:select_next
-URxvt.loginShell: True
 URxvt.perl-ext-common: default,clipboard,url-select,keyboard-select
 URxvt.scrollBar: False
 URxvt.underlineURLs: True
 URxvt.url-select.launcher: chromium
 URxvt.url-select.underline: true
-
-!xautolock*locker: slock
-!xautolock*time: 3
-
-XIdle*timeout: 180
-XIdle*program: /home/user/bin/slock
 
 !*.font: -misc-fixed-medium-r-semicondensed-*-13-120-75-75-c-60-iso10646-1
 !*.font: -schumacher-clean-medium-r-normal-*-12-120-75-75-c-60-iso10646-1
